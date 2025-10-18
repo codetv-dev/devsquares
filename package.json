@@ -9,6 +9,7 @@
 		"astro": "astro"
 	},
 	"dependencies": {
+		"@astrojs/netlify": "^6.5.13",
 		"@astrojs/react": "^4.4.0",
 		"@clerk/astro": "^2.13.3",
 		"@clerk/clerk-react": "^5.49.0",
