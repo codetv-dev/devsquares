@@ -1,0 +1,289 @@
+---
+
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+			rel="stylesheet"
+		/>
+
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>&lt;DevSquares /&gt;</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--bg-color: #050810;
+		--fg-color: #c7cdd8;
+		--primary-color: #7670f3;
+		--accent-color: #ffcb2f;
+		--border-color: #8280a4;
+		--square-size: min(30cqi, 30cqb);
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	html {
+		font-family: 'Rubik', sans-serif;
+		font-optical-sizing: auto;
+		font-weight: 400;
+		font-style: normal;
+		line-height: 1.45;
+	}
+
+	body {
+		background: var(--bg-color);
+		color: var(--fg-color);
+		margin: 0;
+	}
+
+	:where(h1, h2, h3, h4, h5, h6) {
+		line-height: 1.1;
+	}
+
+	button {
+		background: var(--primary-color);
+		border: 1px solid var(--border-color);
+		border-radius: 3px;
+		color: color(
+			from var(--primary-color) srgb calc(r + 0.95) calc(g + 0.95)
+				calc(b + 0.95)
+		);
+		font-family: 'Rubik', sans-serif;
+		font-weight: 500;
+		padding: 4px 8px;
+
+		&.secondary {
+			background: var(--bg-color);
+			border-color: var(--primary-color);
+			color: var(--primary-color);
+			font-weight: 500;
+		}
+
+		&.positive {
+			background: rgb(
+				from var(--primary-color) calc(r - 100) 180 calc(b - 100)
+			);
+		}
+
+		&.negative {
+			background: rgb(
+				from var(--primary-color) 255 calc(g - 150) calc(b - 150)
+			);
+		}
+	}
+
+	.question {
+		background: var(--fg-color);
+		border-radius: 3px;
+		color: var(--bg-color);
+		padding: 16px;
+		text-wrap: pretty;
+
+		p {
+			font-size: clamp(1.25rem, 6.5cqi, 2rem);
+			line-height: 1.2;
+			margin: 0;
+		}
+	}
+
+	.guess-aggregate {
+		inline-size: 100%;
+	}
+
+	.audience-guesses {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	.guess-display {
+		--bg: var(--primary-color);
+		--color: color(
+			from var(--primary-color) srgb calc(r + 0.95) calc(g + 0.95)
+				calc(b + 0.95)
+		);
+
+		align-items: center;
+		background: var(--bg);
+		border: 1px solid transparent;
+		block-size: 40px;
+		border-radius: 1px;
+		display: flex;
+		font-size: clamp(0.75rem, 2.5cqi, 1rem);
+		inline-size: var(--pct);
+		justify-content: space-between;
+		min-inline-size: 140px;
+		transition-property: inline-size, background, border-color;
+		transition-duration: 250ms;
+		transition-timing-function: ease-in-out;
+		white-space: pre;
+
+		&.agree {
+			--bg: rgb(from var(--primary-color) calc(r - 100) 180 calc(b - 100));
+		}
+
+		&.disagree {
+			--bg: rgb(from var(--primary-color) 255 calc(g - 150) calc(b - 150));
+		}
+
+		&[data-value='0'] {
+			background: var(--bg-color);
+			border-color: color(from var(--bg) srgb r g b / 0.25);
+		}
+
+		p {
+			align-items: center;
+			border-radius: 3px;
+			color: var(--color);
+			display: flex;
+			gap: 4px;
+			margin: 0;
+			padding: 0 8px;
+		}
+
+		svg {
+			block-size: 16px;
+			inline-size: auto;
+		}
+	}
+
+	.label {
+		color: var(--border-color);
+		font-size: 0.75rem;
+		letter-spacing: 0.2em;
+		margin: 0 0 4px;
+		text-transform: uppercase;
+	}
+
+	.details {
+		align-items: center;
+		display: flex;
+		gap: 8px;
+
+		img {
+			aspect-ratio: 1;
+			block-size: min(25cqi, 100px);
+			border-radius: 3px;
+			inline-size: auto;
+			object-fit: cover;
+		}
+
+		h3 {
+			margin: 0;
+		}
+	}
+
+	.title {
+		container: title / inline-size;
+		inline-size: 100%;
+		max-inline-size: 360px;
+		padding-inline: 20px;
+	}
+
+	.production {
+		align-items: center;
+		color: #c8cdd7;
+		display: flex;
+		flex-direction: column;
+		font-size: clamp(1rem, 3cqi, 1.25rem);
+		font-weight: 300;
+		gap: 4px;
+		justify-content: center;
+		letter-spacing: 0.2em;
+		text-transform: uppercase;
+
+		p {
+			margin: 0;
+		}
+
+		.logos {
+			align-items: center;
+			display: flex;
+			font-family: 'Rubik Mono One', monospace;
+			font-size: clamp(1rem, 5cqi, 1.75rem);
+			gap: 4px;
+
+			span {
+				padding-inline-start: 4px;
+			}
+
+			svg {
+				block-size: 7cqi;
+				inline-size: auto;
+			}
+		}
+	}
+
+	.play-controls {
+		container: play-controls / inline-size;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		inline-size: 100cqi;
+
+		h3 {
+			font-size: 1.125rem;
+			font-weight: 500;
+			margin: 0;
+		}
+
+		button {
+			font-size: clamp(1rem, 10cqi, 2.25rem);
+			padding-block: 16px;
+			text-transform: uppercase;
+		}
+	}
+
+	.details {
+		gap: 16px;
+	}
+
+	.square {
+		inline-size: 100%;
+	}
+
+	.secret-square-banner {
+		background: var(--accent-color);
+		border-radius: 3px;
+		color: var(--bg-color);
+		inline-size: 100%;
+		line-height: 1.45;
+		padding: 16px;
+
+		p {
+			font-size: clamp(1rem, 3.25cqi, 1.5rem);
+			margin: 0;
+		}
+	}
+
+	.person-info {
+		h3 {
+			font-size: 1.125rem;
+			font-weight: 500;
+			margin: 0;
+		}
+
+		p {
+			margin: 0;
+
+			a {
+				color: var(--primary-color);
+			}
+		}
+	}
+</style>

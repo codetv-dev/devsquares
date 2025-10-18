@@ -1,0 +1,54 @@
+---
+import Layout from '../../layouts/default.astro';
+import Title from '../../components/title';
+import ScreenAudience from '../../components/screen-audience';
+
+const { gameSlug } = Astro.params;
+
+if (!gameSlug) {
+	return Astro.response(404);
+}
+---
+
+<Layout>
+	<main>
+		<Title />
+
+		<ScreenAudience client:only slug={gameSlug} />
+	</main>
+</Layout>
+
+<style is:global>
+	main {
+		container: play / inline-size;
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+		margin-inline: auto;
+		max-inline-size: 480px;
+		padding-block: 32px;
+		padding-inline: min(5dvi, 16px);
+	}
+
+	.waiting {
+		color: var(--border-color);
+		text-align: center;
+	}
+
+	.question {
+		padding: 12px;
+
+		p {
+			font-size: clamp(1rem, 6cqi, 1.75rem);
+		}
+	}
+
+	.score {
+		font-size: clamp(1.25rem, 7.5cqi, 1.75rem);
+		font-weight: 600;
+
+		span {
+			display: block;
+		}
+	}
+</style>

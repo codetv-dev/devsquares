@@ -1,0 +1,94 @@
+---
+import Layout from '../../layouts/default.astro';
+import ScreenHost from '../../components/screen-host';
+
+const { gameSlug } = Astro.params;
+
+if (!gameSlug) {
+	return Astro.response(404);
+}
+---
+
+<Layout>
+	<main>
+		<ScreenHost client:only slug={gameSlug} />
+	</main>
+</Layout>
+
+<style>
+	main {
+		align-items: center;
+		container: host-controls / inline-size;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		inline-size: 90cqi;
+		justify-content: center;
+		margin-inline: auto;
+		max-inline-size: 650px;
+		min-block-size: 100dvb;
+	}
+</style>
+
+<style is:global>
+	.question-admin {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	.admin {
+		border: 2px solid var(--border-color);
+		border-radius: 5px;
+		container: squares / inline-size;
+		display: grid;
+		grid-template:
+			'A1 A2 A3' auto
+			'B1 B2 B3' auto
+			'C1 C2 C3' auto
+			/ var(--square-size) var(--square-size) var(--square-size);
+
+		.square {
+			border: 2px solid var(--border-color);
+			border-radius: 3px;
+			container: square / inline-size;
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+			padding: 8px;
+		}
+
+		.controls {
+			align-items: start;
+			display: flex;
+			gap: 16px;
+			justify-content: space-between;
+
+			.marked {
+				display: inline-block;
+				font-size: clamp(1rem, 10cqi, 1.5rem);
+				font-family: 'Rubik Mono One', monospace;
+				line-height: 0.9;
+				margin-block: 0;
+				margin-inline-end: 16px;
+				text-box-trim: trim-both;
+				text-spacing-trim: space-all;
+			}
+		}
+	}
+
+	.game-controls {
+		display: flex;
+		gap: 16px;
+	}
+
+	.square-answer {
+		margin-block-start: 32px;
+	}
+
+	.correct-answer {
+		p {
+			margin: 0;
+		}
+	}
+</style>
