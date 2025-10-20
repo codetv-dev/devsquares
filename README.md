@@ -21,5 +21,3 @@ TKTK
 - [ ] No UI for loading in questions
 - [ ] No UI for adding link for the square
 - [ ] No audience scoreboard
-- [ ] No UI for creating a new game
-- [ ] Resetting the game doesn’t fully reset the DB (requires manual tweaking)

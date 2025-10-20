@@ -12,15 +12,17 @@ Flow and hosting guide for running a game of DevSquares.
   - Start with center square
   - Continue clockwise from top-left
   - For each square, do the intro + leave space for banter
-- Bring out contestant 1
-  - Intro
-- Bring out contestant 2
-  - Intro
 - Remind the audience they can play along
   - QR code, link
   - We will be showing their guesses on screen
   - There are prizes for players
+- Bring out contestant 1
+  - Intro
+- Bring out contestant 2
+  - Intro
 - Rules
+  - Mention the secret square
+  - TODO: write up the rules in a really concise way
 - Begin game
   - Contestant chooses square
   - Select square on controls
