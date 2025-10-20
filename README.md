@@ -13,6 +13,9 @@ TKTK
 ## TODO
 
 - [ ] Make list of Secret Square correct audience members
+- [ ] Social assets for squares and contestants
+- [ ] Promo strategy
+- [ ] Rules + QR slide + CodetV, Will, and Jason social handles
 
 ### Known Issues (non-urgent)
 

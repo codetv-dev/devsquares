@@ -344,10 +344,7 @@ export default withConvexProvider(function Controls({
 			</Authenticated>
 
 			<Unauthenticated>
-				<SignUp
-					forceRedirectUrl={window.location.toString()}
-					signInForceRedirectUrl={window.location.toString()}
-				/>
+				<SignUp />
 			</Unauthenticated>
 		</>
 	);
