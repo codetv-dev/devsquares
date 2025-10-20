@@ -2,7 +2,7 @@ import { Authenticated, Unauthenticated, useQuery } from 'convex/react';
 import { withConvexProvider } from '../lib/convex';
 import PlayControls from './play-controls';
 import Question from './question';
-import { SignUp, UserButton } from '@clerk/clerk-react';
+import { SignInButton, SignUpButton, UserButton } from '@clerk/clerk-react';
 import { api } from '../../convex/_generated/api';
 import CurrentlyAnswering from './currently-answering';
 
@@ -66,7 +66,19 @@ export default withConvexProvider(function Controls({
 			</Authenticated>
 
 			<Unauthenticated>
-				<SignUp />
+				<h1>Sign in or create an account to play</h1>
+
+				<div className="play-controls">
+					<SignInButton
+						forceRedirectUrl={window.location.toString()}
+						signUpForceRedirectUrl={window.location.toString()}
+					/>
+
+					<SignUpButton
+						forceRedirectUrl={window.location.toString()}
+						signInForceRedirectUrl={window.location.toString()}
+					/>
+				</div>
 			</Unauthenticated>
 		</>
 	);

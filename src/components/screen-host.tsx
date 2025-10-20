@@ -5,7 +5,12 @@ import {
 	useMutation,
 	useQuery,
 } from 'convex/react';
-import { SignUp, SignUpButton, UserButton, useUser } from '@clerk/clerk-react';
+import {
+	SignInButton,
+	SignUpButton,
+	UserButton,
+	useUser,
+} from '@clerk/clerk-react';
 import { withConvexProvider } from '../lib/convex.tsx';
 import { api } from '../../convex/_generated/api';
 import type { Id } from '../../convex/_generated/dataModel';
@@ -346,10 +351,19 @@ export default withConvexProvider(function Controls({
 			</Authenticated>
 
 			<Unauthenticated>
-				<SignUpButton
-					forceRedirectUrl={window.location.toString()}
-					signInForceRedirectUrl={window.location.toString()}
-				/>
+				<h1>Must be logged in to access this page</h1>
+
+				<div className="play-controls">
+					<SignInButton
+						forceRedirectUrl={window.location.toString()}
+						signUpForceRedirectUrl={window.location.toString()}
+					/>
+
+					<SignUpButton
+						forceRedirectUrl={window.location.toString()}
+						signInForceRedirectUrl={window.location.toString()}
+					/>
+				</div>
 			</Unauthenticated>
 		</>
 	);
