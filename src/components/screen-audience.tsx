@@ -24,20 +24,25 @@ export default withConvexProvider(function Controls({
 	return (
 		<>
 			<Authenticated>
-				{score ? (
-					<header className="player-header">
-						<div className="score">
+				<header className="player-header">
+					<div className="score">
+						{score ? (
 							<p>
 								Score: {score.correct * 100}
 								<span className="label">
 									{score.correct}/{score.total} answered correctly
 								</span>
 							</p>
-						</div>
+						) : (
+							<p>
+								Score: N/A
+								<span className="label">Waiting to play...</span>
+							</p>
+						)}
+					</div>
 
-						<UserButton />
-					</header>
-				) : null}
+					<UserButton />
+				</header>
 
 				{secretSquareAnswerStatus ? (
 					<div className="secret-square-banner">

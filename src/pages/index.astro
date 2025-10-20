@@ -6,6 +6,10 @@ import Title from '../components/title';
 <Layout>
 	<main>
 		<Title />
+
+		<div class="play-controls">
+			<a class="button" href="/webu/play">Play</a>
+		</div>
 	</main>
 </Layout>
 
@@ -13,6 +17,20 @@ import Title from '../components/title';
 	main {
 		block-size: 100cqb;
 		display: grid;
+		gap: 40px;
 		place-items: center;
+	}
+
+	:global(.title) {
+		align-self: end;
+	}
+
+	.play-controls {
+		align-items: center;
+		align-self: start;
+
+		.button {
+			min-inline-size: 300px;
+		}
 	}
 </style>
