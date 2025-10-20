@@ -85,13 +85,13 @@ export default withConvexProvider(function Controls({
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						shapeRendering="crispEdges"
-						viewBox="0 0 37 37"
+						viewBox="0 0 33 33"
 					>
-						<path fill="#C8CDD7" d="M0 0h37v37H0z"></path>
+						<path fill="#C8CDD7" d="M0 0h33v33H0z" />
 						<path
 							stroke="#050810"
-							d="M4 4.5h7m1 0h3m7 0h1m3 0h7m-29 1h1m5 0h1m5 0h1m3 0h1m2 0h2m1 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m3 0h2m1 0h1m1 0h4m1 0h1m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m1 0h2m2 0h3m1 0h1m3 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m3 0h3m1 0h1m5 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m1 0h1m3 0h4m3 0h1m2 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-21 1h5m1 0h1m2 0h1m1 0h2m-21 1h1m3 0h1m1 0h3m1 0h1m2 0h5m2 0h6m2 0h1m-27 1h2m1 0h1m1 0h1m1 0h1m11 0h8m-29 1h3m2 0h2m1 0h2m1 0h5m2 0h1m1 0h3m1 0h1m3 0h1m-26 1h2m2 0h2m3 0h2m1 0h3m1 0h1m2 0h2m1 0h1m1 0h2m-27 1h1m1 0h1m1 0h1m1 0h6m3 0h5m1 0h1m3 0h1m-28 1h1m2 0h2m5 0h1m2 0h2m1 0h3m2 0h8m-27 1h1m1 0h4m2 0h3m3 0h1m1 0h1m3 0h5m1 0h1m-27 1h3m3 0h1m1 0h1m3 0h1m2 0h1m1 0h2m1 0h1m4 0h2m-29 1h1m5 0h2m3 0h7m2 0h2m1 0h1m3 0h1m-28 1h1m2 0h1m1 0h1m1 0h2m1 0h1m1 0h1m5 0h1m1 0h1m1 0h4m1 0h2m-27 1h1m3 0h1m2 0h1m3 0h3m1 0h2m1 0h3m3 0h1m1 0h1m-26 1h1m1 0h1m1 0h3m2 0h2m1 0h3m1 0h1m2 0h1m4 0h2m-29 1h2m2 0h4m3 0h1m1 0h1m3 0h1m1 0h7m2 0h1m-21 1h1m1 0h5m1 0h1m1 0h1m1 0h1m3 0h1m3 0h1m-29 1h7m1 0h1m2 0h2m3 0h5m1 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m2 0h1m1 0h1m2 0h1m2 0h4m3 0h1m2 0h1m-28 1h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h3m1 0h1m1 0h7m1 0h2m-29 1h1m1 0h3m1 0h1m2 0h1m3 0h1m6 0h2m5 0h1m-28 1h1m1 0h3m1 0h1m3 0h1m1 0h1m1 0h2m2 0h2m5 0h4m-29 1h1m5 0h1m2 0h3m5 0h1m2 0h4m1 0h1m1 0h2m-29 1h7m1 0h2m1 0h1m1 0h3m1 0h2m1 0h1m1 0h4m1 0h1"
-						></path>
+							d="M4 4.5h7m4 0h3m2 0h1m1 0h7m-25 1h1m5 0h1m2 0h1m1 0h1m1 0h4m1 0h1m5 0h1m-25 1h1m1 0h3m1 0h1m1 0h3m1 0h1m2 0h1m2 0h1m1 0h3m1 0h1m-25 1h1m1 0h3m1 0h1m1 0h7m3 0h1m1 0h3m1 0h1m-25 1h1m1 0h3m1 0h1m1 0h3m1 0h2m2 0h1m1 0h1m1 0h3m1 0h1m-25 1h1m5 0h1m1 0h6m1 0h1m2 0h1m5 0h1m-25 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-17 1h2m4 0h3m-17 1h1m1 0h5m3 0h1m2 0h1m4 0h5m-22 1h4m3 0h4m1 0h1m2 0h1m2 0h1m3 0h1m-20 1h3m1 0h3m2 0h3m1 0h1m1 0h3m1 0h2m-24 1h1m1 0h1m1 0h1m1 0h2m2 0h2m1 0h1m1 0h2m6 0h1m-25 1h2m4 0h1m1 0h2m3 0h2m2 0h2m1 0h1m1 0h3m-25 1h1m2 0h1m1 0h1m1 0h1m4 0h1m6 0h1m1 0h1m1 0h1m-24 1h1m2 0h2m1 0h2m2 0h1m3 0h2m1 0h5m1 0h2m-25 1h1m6 0h3m2 0h1m3 0h1m1 0h3m3 0h1m-25 1h1m4 0h5m2 0h9m1 0h1m-15 1h2m4 0h1m1 0h1m3 0h2m-22 1h7m2 0h5m2 0h1m1 0h1m1 0h1m1 0h3m-25 1h1m5 0h1m1 0h4m2 0h1m1 0h1m3 0h2m-22 1h1m1 0h3m1 0h1m1 0h1m1 0h2m3 0h6m1 0h3m-25 1h1m1 0h3m1 0h1m1 0h1m3 0h2m1 0h1m1 0h2m1 0h5m-25 1h1m1 0h3m1 0h1m1 0h3m2 0h2m6 0h2m1 0h1m-25 1h1m5 0h1m5 0h2m2 0h6m2 0h1m-25 1h7m1 0h2m2 0h1m1 0h1m2 0h8"
+						/>
 					</svg>
 				</div>
 			</section>
