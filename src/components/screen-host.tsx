@@ -334,7 +334,7 @@ export default withConvexProvider(function Controls({
 			<>
 				<h1>Only the host can view this page.</h1>
 				<p>
-					<a href="/play">&larr; back to safey</a>
+					<a href={`/${slug}/play`}>&larr; back to safey</a>
 				</p>
 			</>
 		);
