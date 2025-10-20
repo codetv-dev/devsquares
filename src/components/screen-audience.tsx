@@ -2,7 +2,7 @@ import { Authenticated, Unauthenticated, useQuery } from 'convex/react';
 import { withConvexProvider } from '../lib/convex';
 import PlayControls from './play-controls';
 import Question from './question';
-import { SignUp } from '@clerk/clerk-react';
+import { SignUp, UserButton } from '@clerk/clerk-react';
 import { api } from '../../convex/_generated/api';
 import CurrentlyAnswering from './currently-answering';
 
@@ -13,13 +13,41 @@ export default withConvexProvider(function Controls({
 }) {
 	const game = useQuery(api.game.get_game, { slug });
 	const currentSquare = useQuery(api.squares.get_active_square);
-	const scoreboard = useQuery(api.answers.calculate_scores, {
+	const secretSquareAnswerStatus = useQuery(
+		api.answers.get_secret_square_answer_status,
+		{ game: game?._id },
+	);
+	const score = useQuery(api.answers.calculate_score_by_user, {
 		game: game?._id,
 	});
 
 	return (
 		<>
 			<Authenticated>
+				{score ? (
+					<header className="player-header">
+						<div className="score">
+							<p>
+								Score: {score.correct * 100}
+								<span className="label">
+									{score.correct}/{score.total} answered correctly
+								</span>
+							</p>
+						</div>
+
+						<UserButton />
+					</header>
+				) : null}
+
+				{secretSquareAnswerStatus ? (
+					<div className="secret-square-banner">
+						<p>
+							<strong>Great work!</strong> You got the secret square question
+							correct!
+						</p>
+					</div>
+				) : null}
+
 				<CurrentlyAnswering />
 
 				<Question />
@@ -35,8 +63,6 @@ export default withConvexProvider(function Controls({
 				) : null}
 
 				<PlayControls slug={slug} />
-
-				<pre>{JSON.stringify(scoreboard, null, 2)}</pre>
 			</Authenticated>
 
 			<Unauthenticated>

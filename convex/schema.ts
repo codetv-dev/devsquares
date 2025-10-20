@@ -1,8 +1,6 @@
 import { defineSchema, defineTable } from 'convex/server';
 import { v } from 'convex/values';
 
-// TODO figure out how to track user names (new table?)
-
 export default defineSchema({
 	game: defineTable({
 		slug: v.string(),
@@ -23,7 +21,8 @@ export default defineSchema({
 		secret: v.boolean(),
 	})
 		.index('by_location', ['location'])
-		.index('by_active_square', ['active']),
+		.index('by_active_square', ['active'])
+		.index('by_secret_square', ['secret']),
 	questions: defineTable({
 		text: v.string(),
 		answer: v.string(),
@@ -32,7 +31,8 @@ export default defineSchema({
 		square: v.optional(v.id('squares')),
 	})
 		.index('by_active_question', ['active'])
-		.index('by_complete', ['complete']),
+		.index('by_complete', ['complete'])
+		.index('by_square', ['square']),
 	answers: defineTable({
 		game: v.id('game'),
 		question: v.id('questions'),
@@ -47,4 +47,12 @@ export default defineSchema({
 	})
 		.index('by_user', ['game', 'user', 'question', 'location'])
 		.index('by_question', ['game', 'question']),
+
+	// TODO populate for each user after signup
+	// TODO update using Clerk update webhooks
+	players: defineTable({
+		clerk_id: v.string(),
+		display_name: v.string(),
+		avatar: v.string(),
+	}).index('by_clerk_id', ['clerk_id']),
 });

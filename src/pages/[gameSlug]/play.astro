@@ -20,6 +20,7 @@ if (!gameSlug) {
 
 <style is:global>
 	main {
+		align-items: center;
 		container: play / inline-size;
 		display: flex;
 		flex-direction: column;
@@ -28,6 +29,12 @@ if (!gameSlug) {
 		max-inline-size: 480px;
 		padding-block: 32px;
 		padding-inline: min(5dvi, 16px);
+	}
+
+	.player-header {
+		display: flex;
+		inline-size: 100%;
+		justify-content: space-between;
 	}
 
 	.waiting {

@@ -24,7 +24,6 @@ export default function Title() {
 					style={{
 						fill: '#8280a4',
 						fillOpacity: 1,
-						fill: 'color(display-p3 .5098 .5027 .6449)',
 					}}
 				></path>
 				<path
@@ -33,7 +32,6 @@ export default function Title() {
 					style={{
 						fill: '#c8cdd7',
 						fillOpacity: 1,
-						fill: 'color(display-p3 .7839 .8041 .8445)',
 					}}
 				></path>
 				<path
@@ -42,7 +40,6 @@ export default function Title() {
 					style={{
 						fill: '#7670f3',
 						fillOpacity: 1,
-						fill: 'color(display-p3 .4632 .4373 .9548)',
 					}}
 				></path>
 				<path

@@ -2,8 +2,6 @@ import { v } from 'convex/values';
 import { mutation, query } from './_generated/server';
 import { api } from './_generated/api';
 
-// TODO update to use withIndex for all filter instances
-
 export const get_active_question = query({
 	async handler(ctx) {
 		const question = await ctx.db

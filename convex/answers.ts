@@ -48,7 +48,18 @@ export const add = mutation({
 		was_square_correct: v.boolean(),
 	},
 	async handler(ctx, args) {
-		await ctx.db.insert('answers', args);
+		const existing_answer = await ctx.db
+			.query('answers')
+			.withIndex('by_question', (q) =>
+				q.eq('game', args.game).eq('question', args.question),
+			)
+			.first();
+
+		if (existing_answer) {
+			await ctx.db.patch(existing_answer._id, args);
+		} else {
+			await ctx.db.insert('answers', args);
+		}
 	},
 });
 
@@ -90,6 +101,60 @@ export const calculate_score_by_user = query({
 			correct,
 			total,
 		};
+	},
+});
+
+export const get_secret_square_answer_status = query({
+	args: {
+		game: v.optional(v.id('game')),
+	},
+	async handler(ctx, args) {
+		const user = await ctx.auth.getUserIdentity();
+
+		if (!user || !args.game) {
+			return false;
+		}
+
+		const secret_square = await ctx.db
+			.query('squares')
+			.withIndex('by_secret_square', (q) => q.eq('secret', true))
+			.first();
+
+		const secret_question = await ctx.db
+			.query('questions')
+			.withIndex('by_square', (q) => q.eq('square', secret_square?._id))
+			.first();
+
+		if (!secret_question || secret_question.complete !== true) {
+			return null;
+		}
+
+		const answer = await ctx.db
+			.query('answers')
+			.withIndex('by_question', (q) =>
+				q.eq('game', args.game!).eq('question', secret_question._id),
+			)
+			.first();
+
+		const guess = await ctx.db
+			.query('guesses')
+			.withIndex('by_user', (q) =>
+				q
+					.eq('game', args.game!)
+					.eq('user', user.subject)
+					.eq('question', secret_question._id),
+			)
+			.first();
+
+		if (!answer || !guess) {
+			return null;
+		}
+
+		if (answer.was_square_correct) {
+			return guess.guess === 'agree';
+		} else {
+			return guess.guess === 'disagree';
+		}
 	},
 });
 

@@ -42,7 +42,8 @@ export const check_for_win = query({
 			return;
 		}
 
-		let winner;
+		let winner: 'X' | 'O' | null = null;
+		let winType: 'cat' | 'combo' | null = null;
 		let winningCombo: Array<number> = [];
 		const winCombos = [
 			// horizontal
@@ -73,6 +74,7 @@ export const check_for_win = query({
 			if (win) {
 				winningCombo = combo;
 				winner = mark;
+				winType = 'combo';
 				return true;
 			}
 
@@ -92,11 +94,22 @@ export const check_for_win = query({
 				if (count[mark] > highScore) {
 					highScore = count[mark];
 					winner = mark;
+					winType = 'cat';
 				}
 			}
+
+			winningCombo = game.board
+				.map((m, i) => {
+					if (m === winner) {
+						return i;
+					}
+
+					return null;
+				})
+				.filter((m) => m !== null);
 		}
 
-		return winner ? { winner, winningCombo } : false;
+		return winner ? { winner, winningCombo, winType } : false;
 	},
 });
 

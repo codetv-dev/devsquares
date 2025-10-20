@@ -12,23 +12,10 @@ export default function Controls({ slug }: { slug: string }) {
 		location: square?._id,
 	});
 	const addGuess = useMutation(api.guesses.add_guess);
-	const score = useQuery(api.answers.calculate_score_by_user, {
-		game: game?._id,
-	});
 
 	if (!square || !question) {
 		return (
 			<>
-				{score ? (
-					<div className="score">
-						<p>
-							Score: {score.correct * 100}
-							<span className="label">
-								{score.correct}/{score.total} answered correctly
-							</span>
-						</p>
-					</div>
-				) : null}
 				<div className="waiting">
 					<p>Waiting for host...</p>
 				</div>

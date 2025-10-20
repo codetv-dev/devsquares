@@ -41,6 +41,7 @@ if (!gameSlug) {
 			'B1 B2 B3' var(--square-size)
 			'C1 C2 C3' var(--square-size) / var(--square-size) var(--square-size) var(--square-size);
 		inline-size: 100%;
+		position: relative;
 
 		.square {
 			border: 4px solid var(--border-color);
@@ -207,6 +208,27 @@ if (!gameSlug) {
 
 		> :has(.production) {
 			margin-block-start: auto;
+		}
+	}
+
+	.win-banner {
+		align-items: center;
+		display: flex;
+		inline-size: 100%;
+		justify-content: center;
+		z-index: 1000;
+
+		p {
+			background: var(--accent-color);
+			border-radius: 3px;
+			color: var(--bg-color);
+			font-family: 'Rubik Mono One', monospace;
+			font-size: clamp(1rem, 7.25cqi, 2.5rem);
+			inline-size: 100%;
+			line-height: 1.25;
+			margin: 0;
+			padding: 20px 40px;
+			text-align: center;
 		}
 	}
 

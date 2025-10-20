@@ -38,6 +38,20 @@ export default withConvexProvider(function Controls({
 			</section>
 
 			<section className="info">
+				{win ? (
+					<aside className="win-banner">
+						<p>
+							{win.winType === 'cat' ? (
+								<>
+									Cat's game!
+									<br />
+								</>
+							) : null}{' '}
+							{win.winner} wins!
+						</p>
+					</aside>
+				) : null}
+
 				<CurrentlyAnswering />
 
 				<Question />
