@@ -1,5 +1,6 @@
 import { v } from 'convex/values';
 import { mutation, query } from './_generated/server';
+import { api } from './_generated/api';
 
 export const get_game = query({
 	args: {
@@ -10,6 +11,38 @@ export const get_game = query({
 			.query('game')
 			.withIndex('by_slug', (q) => q.eq('slug', args.slug))
 			.first();
+	},
+});
+
+export const next_game = mutation({
+	args: {
+		game: v.id('game'),
+	},
+	async handler(ctx, args) {
+		const current_game = await ctx.db.get(args.game);
+		const current_slug = current_game?.slug;
+
+		if (current_game) {
+			// Change the slug of the previous game to have a hash
+			await ctx.db.patch(current_game._id, {
+				slug: current_game.slug + '-' + Date.now(),
+			});
+		}
+
+		// reset all the squares to empty state
+		await ctx.runMutation(api.squares.clear_all);
+		await ctx.runMutation(api.squares.set_secret_square);
+
+		if (!current_slug) {
+			console.log('slug is not set!');
+			return;
+		}
+
+		await ctx.db.insert('game', {
+			slug: current_slug,
+			board: new Array(9).fill(null),
+			state: 'default',
+		});
 	},
 });
 
@@ -65,11 +98,9 @@ export const check_for_win = query({
 
 			const win = combo.every((pos) => {
 				const match = game.board[pos] === mark;
-				console.log({ position: pos, value: game.board[pos], match });
+
 				return match;
 			});
-
-			console.log({ combo, mark, win });
 
 			if (win) {
 				winningCombo = combo;
@@ -82,14 +113,12 @@ export const check_for_win = query({
 		});
 
 		if (!hasWinningCombo && game.board.every((m) => !!m)) {
-			console.log('cat’s game');
 			let highScore = 0;
 			let count: Record<string, number> = {};
 
 			for (let pos in game.board) {
 				const mark = game.board[pos];
 				count[mark] = (count[mark] ?? 0) + 1;
-				console.log({ position: pos, mark: game.board[pos], count });
 
 				if (count[mark] > highScore) {
 					highScore = count[mark];
@@ -115,8 +144,11 @@ export const check_for_win = query({
 
 // TODO use the game ID
 export const set_show_guesses = mutation({
-	async handler(ctx) {
-		const game = await ctx.db.query('game').first();
+	args: {
+		game: v.id('game'),
+	},
+	async handler(ctx, args) {
+		const game = await ctx.db.get(args.game);
 
 		await ctx.db.patch(game!._id, { state: 'show-guesses' });
 	},
@@ -124,8 +156,11 @@ export const set_show_guesses = mutation({
 
 // TODO use the game ID
 export const set_secret_square = mutation({
-	async handler(ctx) {
-		const game = await ctx.db.query('game').first();
+	args: {
+		game: v.id('game'),
+	},
+	async handler(ctx, args) {
+		const game = await ctx.db.get(args.game);
 
 		await ctx.db.patch(game!._id, { state: 'secret-square' });
 	},
@@ -133,8 +168,11 @@ export const set_secret_square = mutation({
 
 // TODO use the game ID
 export const set_default = mutation({
-	async handler(ctx) {
-		const game = await ctx.db.query('game').first();
+	args: {
+		game: v.id('game'),
+	},
+	async handler(ctx, args) {
+		const game = await ctx.db.get(args.game);
 
 		await ctx.db.patch(game!._id, { state: 'default' });
 	},

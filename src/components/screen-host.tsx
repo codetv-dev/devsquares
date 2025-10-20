@@ -135,6 +135,7 @@ const Grid = ({ slug }: { slug: string }) => {
 	const answer = useMutation(api.answers.add);
 	const setSecretSquare = useMutation(api.squares.set_secret_square);
 	const clearAll = useMutation(api.squares.clear_all);
+	const nextGame = useMutation(api.game.next_game);
 
 	function handleUpdate(id: Id<'squares'>) {
 		setSquareToUpdate(id);
@@ -142,9 +143,23 @@ const Grid = ({ slug }: { slug: string }) => {
 
 	if (win) {
 		return (
-			<div className="winner">
-				<p>{win.winner} is the winner!</p>
-			</div>
+			<>
+				<div className="winner">
+					<p>{win.winner} is the winner!</p>
+				</div>
+
+				<div className="play-controls">
+					<button
+						onClick={() => {
+							nextGame({
+								game: game!._id,
+							});
+						}}
+					>
+						Next Game
+					</button>
+				</div>
+			</>
 		);
 	}
 
@@ -206,7 +221,7 @@ const Grid = ({ slug }: { slug: string }) => {
 							Give the audience a few seconds to log their guesses
 						</p>
 						<div className="play-controls">
-							<button onClick={() => showGuesses()}>
+							<button onClick={() => showGuesses({ game: game._id })}>
 								Show Audience Guesses
 							</button>
 						</div>
@@ -272,7 +287,11 @@ const Grid = ({ slug }: { slug: string }) => {
 
 							{square.state === 'empty' && !square.active ? (
 								<>
-									<button onClick={() => markActive({ id: square._id })}>
+									<button
+										onClick={() =>
+											markActive({ id: square._id, game: game!._id })
+										}
+									>
 										Mark Active
 									</button>
 									<button

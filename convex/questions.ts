@@ -41,10 +41,11 @@ export const set_active_question = mutation({
 export const mark_complete = mutation({
 	args: {
 		id: v.id('questions'),
+		game: v.id('game'),
 		location: v.id('squares'),
 	},
 	async handler(ctx, args) {
-		await ctx.runMutation(api.game.set_default);
+		await ctx.runMutation(api.game.set_default, { game: args.game });
 
 		await ctx.db.patch(args.id, {
 			complete: true,

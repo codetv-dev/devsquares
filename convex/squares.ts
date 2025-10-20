@@ -48,17 +48,18 @@ export const clear_all = mutation({
 
 export const select = mutation({
 	args: {
+		game: v.id('game'),
 		id: v.id('squares'),
 	},
 	async handler(ctx, args) {
-		const square = await ctx.runQuery(api.squares.get, args);
+		const square = await ctx.runQuery(api.squares.get, { id: args.id });
 
 		await ctx.runMutation(api.questions.set_active_question, {
 			location: args.id,
 		});
 
 		if (square?.secret) {
-			await ctx.runMutation(api.game.set_secret_square);
+			await ctx.runMutation(api.game.set_secret_square, { game: args.game });
 		}
 
 		return ctx.db.patch(args.id, { active: true });
@@ -106,6 +107,7 @@ export const mark_x = mutation({
 
 		await ctx.runMutation(api.questions.mark_complete, {
 			id: activeQuestion!._id,
+			game: args.game,
 			location: args.id,
 		});
 
@@ -116,7 +118,7 @@ export const mark_x = mutation({
 			board,
 		});
 
-		await ctx.runMutation(api.game.set_default);
+		await ctx.runMutation(api.game.set_default, { game: args.game });
 
 		return ctx.db.patch(args.id, { state: 'X', active: false });
 	},
@@ -135,6 +137,7 @@ export const mark_o = mutation({
 		);
 		await ctx.runMutation(api.questions.mark_complete, {
 			id: activeQuestion!._id,
+			game: args.game,
 			location: args.id,
 		});
 
@@ -151,7 +154,7 @@ export const mark_o = mutation({
 			board,
 		});
 
-		await ctx.runMutation(api.game.set_default);
+		await ctx.runMutation(api.game.set_default, { game: args.game });
 
 		return ctx.db.patch(args.id, { state: 'O', active: false });
 	},
@@ -170,6 +173,7 @@ export const mark_incorrect = mutation({
 		if (activeQuestion) {
 			await ctx.runMutation(api.questions.mark_complete, {
 				id: activeQuestion!._id,
+				game: args.game,
 				location: args.id,
 			});
 		}
@@ -180,7 +184,7 @@ export const mark_incorrect = mutation({
 			was_square_correct: false,
 		});
 
-		await ctx.runMutation(api.game.set_default);
+		await ctx.runMutation(api.game.set_default, { game: args.game });
 
 		return ctx.db.patch(args.id, { state: 'empty', active: false });
 	},
