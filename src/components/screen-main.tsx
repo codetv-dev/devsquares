@@ -59,9 +59,7 @@ export default withConvexProvider(function Controls({
 				{game.state === 'secret-square' ? (
 					<div className="secret-square-banner">
 						<p>
-							<strong>{currentSquare?.name} is the secret square!</strong> Get
-							this question correct for a chance to win prizes from our sponsor,
-							Convex!
+							<strong>{currentSquare?.name} is the secret square!</strong>
 						</p>
 					</div>
 				) : null}

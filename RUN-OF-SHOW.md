@@ -15,7 +15,6 @@ Flow and hosting guide for running a game of DevSquares.
 - Remind the audience they can play along
   - QR code, link
   - We will be showing their guesses on screen
-  - There are prizes for players
 - Bring out contestant 1
   - Intro
 - Bring out contestant 2
@@ -36,7 +35,7 @@ Flow and hosting guide for running a game of DevSquares.
   - If contestant is correct, mark the square with their X or O using controls
   - If incorrect, mark incorrect using controls
 - Secret Square (if selected)
-  - Remind audience to play along and there's a special prize for this getting this question right
+  - Remind audience to play along
   - Build suspense a bit, but otherwise play the square as usual
   - If contestant is correct, award them a prize
   - If not, take a moment to be bummed for them, then continue the game.
