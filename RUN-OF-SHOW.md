@@ -15,13 +15,18 @@ Flow and hosting guide for running a game of DevSquares.
 - Remind the audience they can play along
   - QR code, link
   - We will be showing their guesses on screen
+  - There are prizes for players
 - Bring out contestant 1
   - Intro
 - Bring out contestant 2
   - Intro
 - Rules
-  - Mention the secret square
-  - TODO: write up the rules in a really concise way
+  - Two players, X and O, take turns picking squares from our board of developer guests.
+  - Each guest gets a question and might tell the truth or completely bluff.
+  - The contestant says “agree” or “disagree.”
+  - Get three in a row to win.
+  - There is a Secret Square and i correct you win a prize.
+  - If the board fills up with no winner, that’s a Cat’s Game and whoever has the most squares wins.
 - Begin game
   - Contestant chooses square
   - Select square on controls
@@ -35,7 +40,7 @@ Flow and hosting guide for running a game of DevSquares.
   - If contestant is correct, mark the square with their X or O using controls
   - If incorrect, mark incorrect using controls
 - Secret Square (if selected)
-  - Remind audience to play along
+  - Remind audience to play along and there's a special prize for this getting this question right
   - Build suspense a bit, but otherwise play the square as usual
   - If contestant is correct, award them a prize
   - If not, take a moment to be bummed for them, then continue the game.
